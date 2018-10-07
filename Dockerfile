@@ -12,12 +12,12 @@ RUN apt-get update && apt-get install -y \
     libxslt1-dev \
     python-dev \
     mopidy \
-    mopidy-scrobbler \
     mopidy-spotify \
-    mopidy-podcast \
     python-pip \
  && rm -rf /var/lib/apt/lists/* \
  && pip install mopidy-gmusic \
+                mopidy-podcast \
+                mopidy-scrobbler \
                 mopidy-musicbox-webclient \
  && pip install pyasn1 --upgrade \
  && rm -rf ~/.cache/pip

@@ -13,13 +13,13 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     python-dev \
     mopidy \
-    mopidy-scrobbler \
     mopidy-spotify \
-    mopidy-podcast \
     python-pip \
     gstreamer1.0-alsa \
  && rm -rf /var/lib/apt/lists/* \
  && pip install mopidy-gmusic \
+                mopidy-podcast \
+                mopidy-scrobbler \
                 mopidy-musicbox-webclient \
  && pip install pyasn1 --upgrade \
  && rm -rf ~/.cache/pip
