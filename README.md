@@ -19,6 +19,17 @@ Run in background:
 
     docker run -d --rm --device /dev/snd --name mopidy -p 6680:6680 jjok/mopidy
 
+View logs:
+
+    docker logs mopidy
+
+Execute any Mopidy command:
+
+    docker exec mopidy mopidy <cmd>
+    docker exec mopidy mopidy config
+    docker exec mopidy mopidy deps
+
+
 Raspberry PI Setup
 ------------------
 
