@@ -33,10 +33,13 @@ Execute any Mopidy command:
 Raspberry PI Setup
 ------------------
 
-1. Burn Raspbian to SD card (8GB+)
-2. Put SD card in Raspberry Pi 2 (or 3)
-3. Install Docker CE
-4. Get `Dockerfile` and `mopidy.conf`
+1. Burn Raspbian to SD card (8GB+).
+   A 2GB SD card will not be big enough for both Raspbian and the Docker image.
+2. Put SD card in Raspberry Pi 2 (or 3).
+   A Pi Zero does not have enough RAM to build the Docker image.
+3. Install Docker CE.
+   This is nice and easy these days. Just download as `.sh` file and run it.
+4. Copy `Dockerfile.pi` and `mopidy.conf` to the Pi.
 5. Run `build` command (takes around 45 minutes)
 6. Put SD card in Pi Zero
 7. Edit `/etc/rc.local` and add "Run in background" command
