@@ -13,11 +13,11 @@ Build:
 
 Run:
 
-    docker run -it --rm --device /dev/snd --name mopidy -p 6680:6680 jjok/mopidy
+    docker run -it --rm --device /dev/snd --name mopidy -p 6600:6600 -p 6680:6680 jjok/mopidy
 
 Run in background:
 
-    docker run -d --rm --device /dev/snd --name mopidy -p 6680:6680 jjok/mopidy
+    docker run -d --restart=unless-stopped --device /dev/snd --name mopidy -p 6600:6600 -p 6680:6680 jjok/mopidy
 
 View logs:
 
@@ -40,8 +40,9 @@ Raspberry PI Setup
 3. Install Docker CE.
    This is nice and easy these days. Just download as `.sh` file and run it.
 4. Copy `Dockerfile.pi` and `mopidy.conf` to the Pi.
-5. Run `build` command (takes around 45 minutes)
+5. Run `build` command (takes around 45 minutes on Pi 2)
 6. Put SD card in Pi Zero
-7. Edit `/etc/rc.local` and add "Run in background" command
+7. Run "Run in background" command
 8. Install soundcard (PhatDAC)
+   https://learn.pimoroni.com/tutorial/phat/raspberry-pi-phat-dac-install
 9. Reboot
