@@ -1,7 +1,7 @@
 MechanicalSoup==0.11.0
 Mopidy==2.2.1
 Mopidy-GMusic==3.0.0
-Mopidy-MusicBox-Webclient==2.5.0
+Mopidy-Iris==3.31.3
 Mopidy-Podcast==2.0.3
 Mopidy-Scrobbler==1.2.0
 Mopidy-Spotify==3.1.0
