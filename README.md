@@ -39,7 +39,7 @@ Raspberry PI Setup
    A Pi Zero does not have enough RAM to build the Docker image.
 3. Install Docker CE.
    This is nice and easy these days. Just download as `.sh` file and run it.
-4. Copy `Dockerfile.pi` and `mopidy.conf` to the Pi.
+4. Copy `Dockerfile.pi`, `requirements.txt` and `mopidy.conf` to the Pi.
 5. Run `build` command (takes around 45 minutes on Pi 2)
 6. Put SD card in Pi Zero
 7. Run "Run in background" command
