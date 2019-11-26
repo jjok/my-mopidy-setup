@@ -13,7 +13,7 @@ Build:
 
 Run:
 
-    docker run -it --rm --device /dev/snd --name mopidy -p 6600:6600 -p 6680:6680 jjok/mopidy
+    docker run -it --rm --device /dev/snd --name mopidy -p 6600:6600 -p 6680:6680 -v ${HOME}/mopidy:/var/lib/mopidy jjok/mopidy
 
 Run in background:
 
