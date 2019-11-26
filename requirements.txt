@@ -58,5 +58,5 @@ six==1.12.0
 soupsieve==1.9.5
 tornado==5.1.1
 uritools==2.2.0
-urllib3==1.24.1
+urllib3==1.24.2
 validictory==1.1.2
