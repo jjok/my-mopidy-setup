@@ -26,4 +26,5 @@ COPY mopidy.conf /root/.config/mopidy/
 
 EXPOSE 6600 6680 5555/udp
 
-CMD mopidy
+ENTRYPOINT ["mopidy"]
+
