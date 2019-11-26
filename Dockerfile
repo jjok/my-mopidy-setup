@@ -1,4 +1,6 @@
-FROM debian:stable-slim
+ARG BUILD_FROM=debian:stable-slim
+
+FROM $BUILD_FROM
 
 RUN apt-get update \
  && apt-get install -y wget \

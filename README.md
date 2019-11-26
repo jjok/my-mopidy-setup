@@ -8,8 +8,8 @@ It probably won't be exactly the setup you want, but feel free to create a fork 
 
 Build:
 
-    docker build -t jjok/mopidy .
-    docker build -t jjok/mopidy -f Dockerfile.pi .
+    docker build -t jjok/mopidy --build-arg BUILD_FROM=debian:stable-slim .
+    docker build -t jjok/mopidy --build-arg BUILD_FROM=resin/rpi-raspbian:latest .
 
 Run:
 
