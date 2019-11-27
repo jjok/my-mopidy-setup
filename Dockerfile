@@ -13,10 +13,16 @@ RUN apt-get update \
                        libxml2-dev \
                        libxslt1-dev \
                        zlib1g-dev \
+                       build-essential \
+                       gstreamer1.0-alsa \
+                       gstreamer1.0-plugins-bad \
+                       gstreamer1.0-plugins-good \
+                       gstreamer1.0-plugins-ugly \
                        python-dev \
-                       mopidy \
-                       mopidy-spotify \
                        python-pip \
+                       python-gst-1.0 \
+                       libasound2-dev \
+                       libspotify-dev \
  && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt requirements.txt
@@ -29,4 +35,3 @@ COPY mopidy.conf /root/.config/mopidy/
 EXPOSE 6600 6680 5555/udp
 
 ENTRYPOINT ["mopidy"]
-
