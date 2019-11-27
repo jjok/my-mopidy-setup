@@ -13,11 +13,28 @@ Build:
 
 Run:
 
-    docker run -it --rm --device /dev/snd --name mopidy -p 6600:6600 -p 6680:6680 -v ${HOME}/mopidy:/var/lib/mopidy jjok/mopidy
+    docker run --rm \
+               --name mopidy \
+               --device /dev/snd \
+               -it \
+               -p 6600:6600 \
+               -p 6680:6680 \
+               -v ${HOME}/mopidy/cache:/var/cache/mopidy \
+               -v ${HOME}/mopidy/data:/var/lib/mopidy \
+               jjok/mopidy
 
 Run in background:
 
-    docker run -d --restart=unless-stopped --device /dev/snd --name mopidy -p 6600:6600 -p 6680:6680 jjok/mopidy
+    docker run --restart=unless-stopped \
+               --name mopidy \
+               --device /dev/snd \
+               --security-opt seccomp=unconfined \
+               -d \
+               -p 6600:6600 \
+               -p 6680:6680 \
+               -v ${HOME}/mopidy/cache:/var/cache/mopidy \
+               -v ${HOME}/mopidy/data:/var/lib/mopidy \
+               jjok/mopidy
 
 View logs:
 
