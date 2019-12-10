@@ -1,6 +1,6 @@
-Mopidy==2.3.1
-Mopidy-GMusic==3.0.0
-Mopidy-Iris==3.42.2
-Mopidy-Podcast==2.0.3
-Mopidy-Scrobbler==1.2.1
-Mopidy-Spotify==3.1.0
+Mopidy==3.0.0a5
+Mopidy-GMusic==4.0.0a1
+#Mopidy-Iris
+#Mopidy-Podcast
+Mopidy-Scrobbler==2.0.0rc1
+Mopidy-Spotify==4.0.0a1
