@@ -20,6 +20,7 @@ RUN apt-get update \
                        gstreamer1.0-plugins-ugly \
                        python3-dev \
                        python3-pip \
+                       python3-lxml \
                        python3-gst-1.0 \
                        libasound2-dev \
                        libspotify-dev \
