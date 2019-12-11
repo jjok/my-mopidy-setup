@@ -1,4 +1,4 @@
-Mopidy==3.0.0a5
+Mopidy==3.0.0a6
 Mopidy-GMusic==4.0.0a1
 #Mopidy-Iris
 #Mopidy-Podcast
