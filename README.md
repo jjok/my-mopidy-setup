@@ -9,7 +9,7 @@ It probably won't be exactly the setup you want, but feel free to create a fork 
 Build:
 
     docker build -t jjok/mopidy --build-arg BUILD_FROM=debian:stable-slim .
-    docker build -t jjok/mopidy --build-arg BUILD_FROM=resin/rpi-raspbian:latest .
+    docker build -t jjok/mopidy --build-arg BUILD_FROM=balenalib/rpi-raspbian:latest .
 
 Run:
 
@@ -38,7 +38,7 @@ Run in background:
 
 View logs:
 
-    docker logs mopidy
+    docker logs -f mopidy
 
 Execute any Mopidy command:
 
@@ -54,7 +54,7 @@ Raspberry PI Setup
    A 2GB SD card will not be big enough for both Raspbian and the Docker image.
 2. Put SD card in Raspberry Pi 2 (or 3).
    A Pi Zero does not have enough RAM to build the Docker image.
-3. Install Docker CE.
+3. Install Docker CE
    This is nice and easy these days. Just download as `.sh` file and run it.
 4. Copy `Dockerfile` and `mopidy.conf` to the Pi.
 5. Run `build` command (takes around 45 minutes on Pi 2)
