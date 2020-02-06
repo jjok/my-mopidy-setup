@@ -19,9 +19,11 @@ RUN apt-get update \
                        gstreamer1.0-plugins-good \
                        gstreamer1.0-plugins-ugly \
                        python3-dev \
-                       python3-pip \
-                       python3-lxml \
                        python3-gst-1.0 \
+                       python3-lxml \
+                       python3-pip \
+                       python3-setuptools \
+                       python3-wheel \
                        libasound2-dev \
                        libspotify-dev \
  && rm -rf /var/lib/apt/lists/*
@@ -30,6 +32,8 @@ COPY requirements.txt requirements.txt
 
 RUN pip3 install -r requirements.txt \
  && rm -rf ~/.cache/pip
+
+RUN update-ca-certificates --fresh
 
 COPY mopidy.conf /root/.config/mopidy/
 
