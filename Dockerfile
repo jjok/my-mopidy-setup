@@ -37,7 +37,7 @@ RUN update-ca-certificates --fresh
 
 COPY mopidy.conf /root/.config/mopidy/
 
-VOLUME ["/var/cache/mopidy", "/var/lib/mopidy"]
+VOLUME ["/root/.cache/mopidy", "/root/.local/share/mopidy"]
 
 EXPOSE 6600 6680 5555/udp
 
