@@ -6,9 +6,12 @@ This is the Docker image that I'm currently using to run [Mopidy](https://www.mo
 
 It probably won't be exactly the setup you want, but feel free to create a fork for your own setup.
 
-Build:
+Build on PC
 
     docker build -t jjok/mopidy --build-arg BUILD_FROM=debian:stable-slim .
+
+Build on Raspberry Pi
+
     docker build -t jjok/mopidy --build-arg BUILD_FROM=balenalib/rpi-raspbian:latest .
 
 Run:
@@ -19,8 +22,6 @@ Run:
                -it \
                -p 6600:6600 \
                -p 6680:6680 \
-               -v ${HOME}/mopidy/cache:/var/cache/mopidy \
-               -v ${HOME}/mopidy/data:/var/lib/mopidy \
                jjok/mopidy
 
 Run in background:
@@ -32,8 +33,6 @@ Run in background:
                -d \
                -p 6600:6600 \
                -p 6680:6680 \
-               -v ${HOME}/mopidy/cache:/var/cache/mopidy \
-               -v ${HOME}/mopidy/data:/var/lib/mopidy \
                jjok/mopidy
 
 View logs:
@@ -56,7 +55,7 @@ Raspberry PI Setup
    A Pi Zero does not have enough RAM to build the Docker image.
 3. Install Docker CE
    This is nice and easy these days. Just download as `.sh` file and run it.
-4. Copy `Dockerfile` and `mopidy.conf` to the Pi.
+4. Copy `Dockerfile`, `requirements.txt` and `mopidy.conf` to the Pi.
 5. Run `build` command (takes around 45 minutes on Pi 2)
 6. Put SD card in Pi Zero
 7. Run "Run in background" command
