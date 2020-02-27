@@ -2,6 +2,7 @@ Mopidy==3.0.1
 Mopidy-GMusic==4.0.0
 #Mopidy-Iris==3.44.0
 https://github.com/jaedb/Iris/archive/3.44.0.zip
+Mopidy-MPD==3.0.0
 Mopidy-Podcast==3.0.0
 Mopidy-Scrobbler==2.0.0
 Mopidy-Spotify==4.0.0
