@@ -43,6 +43,6 @@ COPY mopidy.conf /root/.config/mopidy/
 
 VOLUME ["/root/.cache/mopidy", "/root/.local/share/mopidy"]
 
-EXPOSE 6600 6680 5555/udp
+EXPOSE 6600 6680
 
 ENTRYPOINT ["mopidy"]
