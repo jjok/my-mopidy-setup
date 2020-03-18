@@ -1,6 +1,7 @@
-Mopidy==3.0.1
+#Mopidy==3.0.1
+-e git+https://github.com/jjok/mopidy.git@add-download-flag#egg=Mopidy
 #Mopidy-GMusic==4.0.0
--e git+https://github.com/jjok/mopidy-gmusic.git@my-fixes#egg=Mopidy-GMusic
+-e git+https://github.com/jjok/mopidy-gmusic.git@fix/161#egg=Mopidy-GMusic
 #Mopidy-Iris==3.44.0
 https://github.com/jaedb/Iris/archive/3.44.0.zip#egg=Mopidy-Iris
 Mopidy-MPD==3.0.0
