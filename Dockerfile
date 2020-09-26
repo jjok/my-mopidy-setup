@@ -43,6 +43,8 @@ COPY mopidy.conf /root/.config/mopidy/
 
 VOLUME ["/root/.cache/mopidy", "/root/.local/share/mopidy"]
 
+ENV TZ=Europe/London
+
 EXPOSE 6600 6680
 
 ENTRYPOINT ["mopidy"]
