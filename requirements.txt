@@ -1,9 +1,9 @@
-#Mopidy==3.0.1
--e git+https://github.com/jjok/mopidy.git@add-download-flag#egg=Mopidy
+#Mopidy==3.0.2
+-e git+https://github.com/mopidy/mopidy.git@develop#egg=Mopidy
 #Mopidy-GMusic==4.0.0
 -e git+https://github.com/jjok/mopidy-gmusic.git@fix/161#egg=Mopidy-GMusic
-Mopidy-Iris==3.46.0
+Mopidy-Iris==3.52.4
 Mopidy-MPD==3.0.0
 Mopidy-Podcast==3.0.0
 Mopidy-Scrobbler==2.0.0
-Mopidy-Spotify==4.0.0
+Mopidy-Spotify==4.0.1
