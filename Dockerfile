@@ -18,6 +18,7 @@ RUN apt-get update \
                        gstreamer1.0-plugins-bad \
                        gstreamer1.0-plugins-good \
                        gstreamer1.0-plugins-ugly \
+                       python3-dbus \
                        python3-dev \
                        python3-gst-1.0 \
                        python3-lxml \
@@ -26,8 +27,10 @@ RUN apt-get update \
                        python3-wheel \
                        libasound2-dev \
                        libspotify-dev \
+                       dleyna-server \
  && rm -rf /var/lib/apt/lists/*
 
+# Add git to get some Mopidy stuff straight from Github
 RUN apt-get update \
  && apt-get install -y git \
  && rm -rf /var/lib/apt/lists/*

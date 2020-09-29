@@ -1,5 +1,6 @@
 #Mopidy==3.0.2
 -e git+https://github.com/mopidy/mopidy.git@develop#egg=Mopidy
+Mopidy-dLeyna==2.0.1
 #Mopidy-GMusic==4.0.0
 -e git+https://github.com/jjok/mopidy-gmusic.git@fix/161#egg=Mopidy-GMusic
 Mopidy-Iris==3.52.4

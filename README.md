@@ -19,9 +19,8 @@ Run in foreground:
     docker run --rm \
                --name mopidy \
                --device /dev/snd \
+               --net=host \
                -it \
-               -p 6600:6600 \
-               -p 6680:6680 \
                jjok/mopidy
 
 Run in background:
@@ -29,10 +28,9 @@ Run in background:
     docker run --restart=unless-stopped \
                --name mopidy \
                --device /dev/snd \
+               --net=host \
                --security-opt seccomp=unconfined \
                -d \
-               -p 6600:6600 \
-               -p 6680:6680 \
                jjok/mopidy
 
 View logs:
@@ -49,7 +47,7 @@ Execute any Mopidy command:
 Raspberry PI Setup
 ------------------
 
-1. Burn Raspbian to SD card (8GB+).
+1. Burn Raspberry PI OS to SD card (8GB+).
    A 2GB SD card will not be big enough for both Raspbian and the Docker image.
 2. Put SD card in Raspberry Pi 2.
    A Pi Zero does not have enough RAM to build the Docker image.
