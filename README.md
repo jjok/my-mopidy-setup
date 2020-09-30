@@ -29,7 +29,6 @@ Run in background:
                --name mopidy \
                --device /dev/snd \
                --net=host \
-               --security-opt seccomp=unconfined \
                -d \
                jjok/mopidy
 
