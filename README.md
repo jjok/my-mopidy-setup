@@ -8,11 +8,11 @@ It probably won't be exactly the setup you want, but feel free to create a fork 
 
 Build on PC
 
-    docker build -t jjok/mopidy --build-arg BUILD_FROM=debian:stable-slim .
+    docker build --pull -t jjok/mopidy --build-arg BUILD_FROM=debian:stable-slim .
 
 Build on Raspberry Pi
 
-    docker build -t jjok/mopidy --build-arg BUILD_FROM=balenalib/rpi-raspbian:latest .
+    docker build --pull -t jjok/mopidy --build-arg BUILD_FROM=balenalib/rpi-raspbian:latest .
 
 Run in foreground:
 
