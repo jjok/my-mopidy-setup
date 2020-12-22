@@ -31,9 +31,9 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 # Add git to get some Mopidy stuff straight from Github
-RUN apt-get update \
- && apt-get install -y git \
- && rm -rf /var/lib/apt/lists/*
+#RUN apt-get update \
+# && apt-get install -y git \
+# && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt requirements.txt
 
