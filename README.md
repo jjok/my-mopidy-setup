@@ -19,7 +19,7 @@ Run in foreground:
     docker run --rm \
                --name mopidy \
                --device /dev/snd \
-               --net=host \
+               -p 6600:6600 -p 6680:6680 \
                -it \
                jjok/mopidy
 
@@ -28,7 +28,7 @@ Run in background:
     docker run --restart=unless-stopped \
                --name mopidy \
                --device /dev/snd \
-               --net=host \
+               -p 6600:6600 -p 6680:6680 \
                -d \
                jjok/mopidy
 
