@@ -45,7 +45,9 @@ COPY mopidy.conf /root/.config/mopidy/
 # https://discourse.mopidy.com/t/spotify-login-error-errortype-unable-to-contact-server-8/4979/19
 RUN echo "104.154.126.229 ap.spotify.com" >> /etc/hosts
 
-VOLUME ["/root/.cache/mopidy", "/root/.local/share/mopidy"]
+RUN mkdir /root/music
+
+VOLUME ["/root/.cache/mopidy", "/root/.local/share/mopidy", "/root/music"]
 
 ENV TZ=Europe/London
 
