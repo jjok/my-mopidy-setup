@@ -1,5 +1,4 @@
 Mopidy==3.1.1
-Mopidy-dLeyna==2.0.1
 Mopidy-Iris==3.58.0
 Mopidy-MPD==3.1.0
 Mopidy-Podcast==3.0.0
