@@ -43,6 +43,12 @@ Execute any Mopidy command:
     docker exec mopidy mopidy deps
 
 
+Mount music from Samba share on network
+
+    sudo apt install samba samba-common-bin smbclient cifs-utils
+
+    echo "//192.168.1.1/share  /home/pi/music  cifs  guest,vers=1.0  0  0" | sudo tee -a /etc/fstab
+
 Raspberry PI Setup
 ------------------
 
