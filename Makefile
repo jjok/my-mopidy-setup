@@ -10,7 +10,7 @@ tag:
 	docker tag jjok/mopidy:$(DATE) jjok/mopidy:latest
 
 run-fg:
-	docker run --name mopidy --device /dev/snd -p 6600:6600 -p 6680:6680 -v /home/pi/music:/root/music --rm -it jjok/mopidy:latest
+	docker run --name mopidy --device /dev/snd --net host -v /home/pi/music:/root/music --rm -it jjok/mopidy:latest
 
 run-bg:
-	docker run --name mopidy --device /dev/snd -p 6600:6600 -p 6680:6680 -v /home/pi/music:/root/music --restart=unless-stopped -d jjok/mopidy:latest
+	docker run --name mopidy --device /dev/snd --net host -v /home/pi/music:/root/music --restart=unless-stopped -d jjok/mopidy:latest
