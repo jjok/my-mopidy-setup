@@ -1,5 +1,5 @@
 # https://github.com/mopidy/mopidy/releases
-Mopidy==3.3.0
+Mopidy==3.4.1
 
 # https://github.com/jaedb/Iris/releases
 #Mopidy-Iris==3.64.0
