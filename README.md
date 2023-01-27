@@ -2,7 +2,7 @@ My Mopidy Setup
 ===============
 
 This is the Docker image that I'm currently using to run [Mopidy](https://www.mopidy.com/) on a Raspberry Pi Zero with
-[PhatDAC](https://shop.pimoroni.com/products/phat-dac).
+[PhatDAC](https://shop.pimoroni.com/products/phat-dac) and a Pi 2 with an IQAudio DAC.
 
 It probably won't be exactly the setup you want, but feel free to create a fork for your own setup.
 
@@ -43,12 +43,6 @@ Execute any Mopidy command:
     docker exec mopidy mopidy deps
 
 
-Mount music from Samba share on network
-
-    sudo apt install samba samba-common-bin smbclient cifs-utils
-
-    echo "//192.168.1.1/share  /home/pi/music  cifs  guest,vers=1.0  0  0" | sudo tee -a /etc/fstab
-
 Raspberry PI Setup
 ------------------
 
@@ -56,7 +50,7 @@ Raspberry PI Setup
    A 2GB SD card will not be big enough for both Raspbian and the Docker image.
 2. Put SD card in Raspberry Pi 2.
    A Pi Zero does not have enough RAM to build the Docker image.
-3. Install Docker CE. `sudo apt install docker-ce`
+3. Install Docker CE.
 4. Copy `Dockerfile`, `requirements.txt` and `mopidy.conf` to the Pi.
 5. Run `build` command (takes around 45 minutes on Pi 2)
 6. Put SD card in Pi Zero
