@@ -12,14 +12,15 @@ Build on PC
 
 Build on Raspberry Pi
 
-    docker build --pull -t jjok/mopidy --build-arg BUILD_FROM=balenalib/rpi-raspbian:latest .
+    docker build --pull -t jjok/mopidy --build-arg BUILD_FROM=balenalib/raspberry-pi:latest .
 
 Run in foreground:
 
     docker run --rm \
                --name mopidy \
                --device /dev/snd \
-               -p 6600:6600 -p 6680:6680 \
+               --net host \
+               -v /home/jonathan/music/music:/root/music \
                -it \
                jjok/mopidy
 
@@ -29,6 +30,7 @@ Run in background:
                --name mopidy \
                --device /dev/snd \
                -p 6600:6600 -p 6680:6680 \
+               -v /home/pi/music/music:/root/music \
                -d \
                jjok/mopidy
 
@@ -47,13 +49,10 @@ Raspberry PI Setup
 ------------------
 
 1. Burn Raspberry PI OS to SD card (8GB+).
-   A 2GB SD card will not be big enough for both Raspbian and the Docker image.
-2. Put SD card in Raspberry Pi 2.
-   A Pi Zero does not have enough RAM to build the Docker image.
+2. Put SD card in Raspberry Pi.
 3. Install Docker CE.
 4. Copy `Dockerfile`, `requirements.txt` and `mopidy.conf` to the Pi.
-5. Run `build` command (takes around 45 minutes on Pi 2)
-6. Put SD card in Pi Zero
-7. Run "Run in background" command
-8. [Install PhatDAC soundcard](https://learn.pimoroni.com/tutorial/phat/raspberry-pi-phat-dac-install)
-9. Reboot
+5. Run `build` command (takes around 30 minutes on Pi Zero)
+6. Run "Run in background" command
+7. Install [PhatDAC](https://learn.pimoroni.com/tutorial/phat/raspberry-pi-phat-dac-install) soundcard
+8. Reboot
