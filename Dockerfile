@@ -1,10 +1,12 @@
-ARG BUILD_FROM=debian:buster-slim
+ARG BUILD_FROM
 
 FROM $BUILD_FROM
 
 RUN apt-get update \
  && apt-get install -y gstreamer1.0-alsa \
                        gstreamer1.0-plugins-good \
+                       gstreamer1.0-plugins-ugly \
+                       gstreamer1.0-plugins-bad \
                        python3-gst-1.0 \
                        python3-lxml \
                        python3-pip \
