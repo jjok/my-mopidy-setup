@@ -2,9 +2,17 @@ My Mopidy Setup
 ===============
 
 This is the Docker image that I'm currently using to run [Mopidy](https://www.mopidy.com/) on a Raspberry Pi Zero with
-[PhatDAC](https://shop.pimoroni.com/products/phat-dac) and a Pi 2 with an IQAudio DAC.
+[PhatDAC](https://shop.pimoroni.com/products/phat-dac) and a Pi 2 with an IQAudio Pi-DACZero.
 
 It probably won't be exactly the setup you want, but feel free to create a fork for your own setup.
+
+The Mopidy version and all extensions to be installed are defined in `requirements.txt`.
+
+I have music files in `~/music` that I mount into the container.
+
+
+Build
+-----
 
 Build on PC
 
@@ -14,25 +22,10 @@ Build on Raspberry Pi
 
     docker build --pull -t jjok/mopidy --build-arg BUILD_FROM=balenalib/raspberry-pi:latest .
 
-Run in foreground:
+Run
+---
 
-    docker run --rm \
-               --name mopidy \
-               --device /dev/snd \
-               --net host \
-               -v /home/jonathan/music/music:/root/music \
-               -it \
-               jjok/mopidy
-
-Run in background:
-
-    docker run --restart=unless-stopped \
-               --name mopidy \
-               --device /dev/snd \
-               -p 6600:6600 -p 6680:6680 \
-               -v /home/pi/music/music:/root/music \
-               -d \
-               jjok/mopidy
+    docker compose up -d
 
 View logs:
 
@@ -48,11 +41,62 @@ Execute any Mopidy command:
 Raspberry PI Setup
 ------------------
 
-1. Burn Raspberry PI OS to SD card (8GB+).
-2. Put SD card in Raspberry Pi.
-3. Install Docker CE.
-4. Copy `Dockerfile`, `requirements.txt` and `mopidy.conf` to the Pi.
-5. Run `build` command (takes around 30 minutes on Pi Zero)
-6. Run "Run in background" command
-7. Install [PhatDAC](https://learn.pimoroni.com/tutorial/phat/raspberry-pi-phat-dac-install) soundcard
-8. Reboot
+1. Burn Raspberry PI OS to SD card (8GB+). Put SD card in Raspberry Pi.
+2. Install [Docker CE](https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script).
+3. Copy files to the Pi.
+  * `.dockerignore`
+  * `docker-compose.yml`
+  * `Dockerfile`
+  * `Makefile`
+  * `mopidy.conf`
+  * `requirements.txt`
+4. Run `build` command (takes around 30 minutes on Pi Zero)
+5. Install soundcard (see below).
+6. Run container
+7. Reboot
+
+
+Install PhatDAC
+---------------
+
+https://learn.pimoroni.com/tutorial/phat/raspberry-pi-phat-dac-install
+
+Edit `/boot/config.txt`.
+
+Remove this line:
+
+    dtparam=audio=on
+
+Add this line:
+
+    dtoverlay=hifiberry-dac
+
+You might need to do some other stuff too. I haven't tried this manually yet.
+    
+
+Install IQaudIO Pi-DACZero
+--------------------------
+
+https://github.com/iqaudio/UserDocs/blob/master/userguide.pdf
+
+Edit `/boot/config.txt`.
+
+Remove this line:
+
+    dtparam=audio=on
+
+Add this line:
+
+    dtoverlay=iqaudio-dacplus
+
+
+Mount music from USB
+--------------------
+
+    mkdir ~/usb
+    mkdir ~/music
+
+Add these lines to `/etc/fstab`.
+
+    /dev/sda1                  /home/jonathan/usb    vfat   defaults         0   0
+    /home/jonathan/usb/music   /home/jonathan/music  none   defaults,rbind   0   0

@@ -5,10 +5,10 @@ IMAGE := jjok/mopidy
 default: build-pi tag down run-bg save
 
 upload-kitchen:
-	scp ./.dockerignore ./Dockerfile ./Makefile ./mopidy.conf ./requirements.txt pi@kitchen-musicbox.local:mopidy-build/
+	scp ./.dockerignore ./docker-compose.yml ./Dockerfile ./Makefile ./mopidy.conf ./requirements.txt jonathan@kitchen-musicbox.local:mopidy-build/
 
 upload-office:
-	scp ./.dockerignore ./Dockerfile ./Makefile ./mopidy.conf ./requirements.txt jonathan@office-musicbox.local:mopidy-build/
+	scp ./.dockerignore ./docker-compose.yml ./Dockerfile ./Makefile ./mopidy.conf ./requirements.txt jonathan@office-musicbox.local:mopidy-build/
 
 build-pc:
 	docker build --pull -t $(IMAGE):$(DATE) --build-arg BUILD_FROM=debian:stable-slim .
@@ -34,4 +34,4 @@ run-bg:
 	docker run --name mopidy --device /dev/snd --net host -v /home/$(USER)/music:/root/music --restart=unless-stopped -d $(IMAGE):latest
 
 sync-music:
-	rsync -avP --recursive --files-from=music.txt /media/jonathan/77B9-F955/music/ jonathan@office-musicbox.local:music/
+	rsync -ahvP --recursive --files-from=music.txt /media/jonathan/77B9-F955/music/ jonathan@office-musicbox.local:music/

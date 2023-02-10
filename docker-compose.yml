@@ -1,0 +1,10 @@
+services:
+  mopidy:
+    container_name: mopidy
+    image: jjok/mopidy:latest
+    devices:
+      - /dev/snd
+    volumes:
+      - /home/jonathan/music:/root/music:ro
+    restart: unless-stopped
+    network_mode: host
