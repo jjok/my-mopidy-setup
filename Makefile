@@ -11,10 +11,10 @@ upload-office:
 	scp ./.dockerignore ./docker-compose.yml ./Dockerfile ./Makefile ./mopidy.conf ./requirements.txt jonathan@office-musicbox.local:mopidy-build/
 
 build-pc:
-	docker build --pull -t $(IMAGE):$(DATE) --build-arg BUILD_FROM=debian:stable-slim .
+	docker build --pull -t $(IMAGE):$(DATE) --build-arg ARCH=amd64 --build-arg BUILD_FROM=debian:stable-slim .
 
 build-pi:
-	docker build --pull -t $(IMAGE):$(DATE) --build-arg BUILD_FROM=balenalib/raspberry-pi:latest .
+	docker build --pull -t $(IMAGE):$(DATE) --build-arg ARCH=armhf --build-arg BUILD_FROM=balenalib/raspberry-pi:latest .
 
 tag:
 	docker tag $(IMAGE):$(DATE) $(IMAGE):latest
