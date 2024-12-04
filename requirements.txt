@@ -1,5 +1,5 @@
 # https://github.com/mopidy/mopidy/releases
-Mopidy==3.4.1
+Mopidy==3.4.2
 
 # https://github.com/jaedb/Iris/releases
 Mopidy-Iris==3.69.3
@@ -17,4 +17,7 @@ Mopidy-Podcast==3.0.1
 Mopidy-Scrobbler==2.0.1
 
 # https://github.com/mopidy/mopidy-spotify/releases
-Mopidy-Spotify==5.0.0a1
+Mopidy-Spotify==5.0.0a3
+
+# https://github.com/mopidy/mopidy-local/releases
+Mopidy-Local==3.2.1
