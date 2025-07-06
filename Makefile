@@ -4,11 +4,11 @@ IMAGE := jjok/mopidy
 
 default: build-pi tag down run-bg save
 
-upload-kitchen:
-	scp ./.dockerignore ./docker-compose.yml ./Dockerfile ./Makefile ./mopidy.conf ./requirements.txt jonathan@kitchen-musicbox.local:mopidy-build/
+upload-snapserver:
+	rsync -ahvP --recursive --files-from=snapserver-build-files.txt ./ jonathan@raspberrypi.local:mopidy-build/
 
-upload-office:
-	scp ./.dockerignore ./docker-compose.yml ./Dockerfile ./Makefile ./mopidy.conf ./requirements.txt jonathan@office-musicbox.local:mopidy-build/
+upload-snapclient:
+	rsync -ahvP --recursive --files-from=snapclient-build-files.txt ./ jonathan@snapclient.local:snapclient-build/
 
 build-pc:
 	docker build --pull -t $(IMAGE):$(DATE) --build-arg ARCH=amd64 --build-arg BUILD_FROM=debian:stable-slim .

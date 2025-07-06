@@ -1,0 +1,4 @@
+mopidy
+snapserver
+docker-compose.yml
+Makefile

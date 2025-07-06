@@ -1,8 +1,8 @@
 My Mopidy Setup
 ===============
 
-This is the Docker image that I'm currently using to run [Mopidy](https://www.mopidy.com/) on a Raspberry Pi Zero with
-[PhatDAC](https://shop.pimoroni.com/products/phat-dac) and a Pi 2 with an IQAudio Pi-DACZero.
+These is the Docker images that I'm currently using to run [Mopidy](https://www.mopidy.com/) and [Snapserver](https://github.com/badaix/snapcast) on a Raspberry Pi 3a, and [Snapclient](https://github.com/badaix/snapcast) with a
+[PhatDAC](https://shop.pimoroni.com/products/phat-dac) or IQAudio Pi-DACZero on a Raspberry Pi Zero.
 
 It probably won't be exactly the setup you want, but feel free to create a fork for your own setup.
 
@@ -16,16 +16,21 @@ Build
 
 Build on PC
 
-    docker build --pull -t jjok/mopidy --build-arg BUILD_FROM=debian:stable-slim .
+    docker compose build mopidy snapserver --build-arg BUILD_FROM=docker.io/debian:bookworm-slim --build-arg ARCH=amd64
 
-Build on Raspberry Pi
+Build on Raspberry Pi (takes about 40 minutes on Pi 3)
 
-    docker build --pull -t jjok/mopidy --build-arg BUILD_FROM=balenalib/raspberry-pi:latest .
+    docker compose build mopidy snapserver
 
-Run
----
+Run Mopidy and Snapserver
+-------------------------
 
-    docker compose up -d
+    docker compose up mopidy snapserver -d
+
+Run Snapclient
+--------------
+
+    docker compose up snapclient -d
 
 View logs:
 
@@ -41,27 +46,43 @@ Execute any Mopidy command:
 Raspberry PI Setup
 ------------------
 
-1. Burn Raspberry PI OS to SD card (8GB+). Put SD card in Raspberry Pi.
-2. Install [Docker CE](https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script).
-3. Copy files to the Pi.
-  * `.dockerignore`
+### Mopidy and Snapcast
+
+1. Burn Raspberry PI OS to SD card (16GB+). Put SD card in Raspberry Pi.
+3. Copy files to the Pi. `make upload-snapserver`
+  * `snapserver`
   * `docker-compose.yml`
   * `Dockerfile`
   * `Makefile`
   * `mopidy.conf`
   * `requirements.txt`
-4. Run `build` command (takes around 30 minutes on Pi Zero)
-5. Install soundcard (see below).
-6. Run container
-7. Reboot
+3. `ssh` onto Pi 
+4. Install [Docker CE](https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script).
+5. Run the `build` command
+6. Mount music from USB (see below)
+7. Run container `docker compose up mopidy snapserver -d`
+8. Reboot
+9. Scan for music `docker exec mopidy mopidy local scan`
 
+### Snapclient
+
+1. Install Raspberry Pi OS
+2. Copy files to the Pi. `make upload-snapclient`
+3. `ssh` onto Pi
+3. Install Docker CE
+4. Run `docker compose build snapclient`
+5. Install soundcard (see below)
+6. Reboot
+7. Run container `docker compose up snapclient -d`
 
 Install PhatDAC
 ---------------
 
 https://learn.pimoroni.com/tutorial/phat/raspberry-pi-phat-dac-install
 
-Edit `/boot/config.txt`.
+Their install script doesn't work for Raspberry Pi OS Bookworm. I managed to get it working.
+
+Edit `/boot/firmware/config.txt`.
 
 Remove this line:
 
@@ -71,15 +92,15 @@ Add this line:
 
     dtoverlay=hifiberry-dac
 
-You might need to do some other stuff too. I haven't tried this manually yet.
-    
+Maybe enable I2C or something in `raspi-config`?
+
 
 Install IQaudIO Pi-DACZero
 --------------------------
 
 https://github.com/iqaudio/UserDocs/blob/master/userguide.pdf
 
-Edit `/boot/config.txt`.
+Edit `/boot/firmware/config.txt`.
 
 Remove this line:
 

@@ -1,10 +1,58 @@
 services:
   mopidy:
     container_name: mopidy
-    image: jjok/mopidy:latest
-    devices:
-      - /dev/snd
+    image: jjok/mopidy
+    build:
+      context: mopidy
+      args:
+        ARCH: arm64
+        BUILD_FROM: docker.io/arm64v8/debian:bookworm-slim
     volumes:
+      - type: bind
+        source: ./mopidy.conf
+        target: /root/.config/mopidy/mopidy.conf
+        read_only: true
       - /home/jonathan/music:/root/music:ro
     restart: unless-stopped
     network_mode: host
+    # ports:
+    #   - 6600:6600
+    #   - 6680:6680
+    group_add:
+      - audio
+    # environment:
+    #   - GST_DEBUG=2
+
+  snapserver:
+    image: jjok/snapserver
+    container_name: snapserver
+    build:
+      context: snapserver
+    restart: unless-stopped
+
+    network_mode: host
+    # ports:
+    #   - 1704:1704
+    #   - 1705:1705
+    #   - 1780:1780
+    #   # TCP sink
+    #   - 4953:4953
+
+  snapclient:
+    container_name: snapclient
+    image: jjok/snapclient
+    build:
+      context: snapclient
+    devices:
+      - /dev/snd
+    restart: unless-stopped
+    network_mode: host
+#    ports:
+#     - 1704:1704
+    #volumes:
+    #  - /var/run/dbus:/var/run/dbus
+    #  - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
+    command:
+      - "--host"
+      #- "snapserver.local"
+      - "192.168.0.18"
