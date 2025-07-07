@@ -55,4 +55,4 @@ services:
     command:
       - "--host"
       #- "snapserver.local"
-      - "192.168.0.18"
+      - "192.168.0.10"
