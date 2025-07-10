@@ -1,3 +1,2 @@
 snapclient
 docker-compose.yml
-Makefile
