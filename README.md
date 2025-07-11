@@ -67,7 +67,9 @@ Raspberry PI Setup
 ### Snapclient
 
 1. Install Raspberry Pi OS
-2. Copy files to the Pi. `make upload-snapclient`
+2. Copy files to the Pi.
+   * `make client=office upload`
+   * `make client=kitchen upload`
 3. `ssh` onto Pi
 3. Install Docker CE
 4. Run `docker compose build snapclient`
