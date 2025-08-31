@@ -8,7 +8,7 @@ It probably won't be exactly the setup you want, but feel free to create a fork 
 
 The Mopidy version and all extensions to be installed are defined in `requirements.txt`.
 
-I have music files in `~/music` that I mount into the container.
+I have music files in `~/music` that I mount into the Mopidy container.
 
 
 Build
@@ -64,18 +64,26 @@ Raspberry PI Setup
 8. Reboot
 9. Scan for music `docker exec mopidy mopidy local scan`
 
-### Snapclient
+### Snapclient with read-only filesystem
 
 1. Install Raspberry Pi OS
 2. Copy files to the Pi.
    * `make client=office upload`
    * `make client=kitchen upload`
 3. `ssh` onto Pi
-3. Install Docker CE
-4. Run `docker compose build snapclient`
-5. Install soundcard (see below)
-6. Reboot
-7. Run container `docker compose up snapclient -d`
+4. Install Docker CE
+5. Set Docker up to run on read-only filesystem:
+   ```
+   sudo apt install fuse-overlayfs
+   echo '{ "storage-driver": "fuse-overlayfs" }' | sudo tee /etc/docker/daemon.json
+   sudo service docker restart
+   ```
+6. Build image `docker compose build snapclient`
+7. Install soundcard (see below)
+8. Run container `docker compose up snapclient -d`
+9. Put it into read-only file system mode with `raspi-config`
+10. Reboot
+
 
 Install PhatDAC
 ---------------
